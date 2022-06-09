@@ -14,7 +14,8 @@
             <form [formGroup]="form">
                 <span class="p-float-label" style="margin: 20px;">
                     <input 
-                        id="float-input" 
+                    class="form-control" 
+                    id="float-input" 
                         type="text" 
                         formControlName="email"
                         pInputText> 
@@ -25,10 +26,11 @@
                 <span class="p-float-label" style="margin: 20px;margin-top: 30px;">
                     
                     <input 
+                    class="form-control" 
                         id="float-input" 
                         type="password" 
                         formControlName="password"
-                        pInputText > 
+                        pInputText >
                     <label for="float-input">Contraseña</label>
                 </span>
     
@@ -41,6 +43,7 @@
                  
                 <br>              
                 <p>Aun no tienes cuenta? <a href="/registro" >Registrate</a></p>   
+                <p>Olvidaste la contraseña? <a href="/retrive" >RestableceContraseña</a></p>   
                
                
      
