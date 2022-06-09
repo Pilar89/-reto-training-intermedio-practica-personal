@@ -1,10 +1,13 @@
 package co.com.sofka.questions.model;
 
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 import java.util.Optional;
 
+//@Document(collection="answers")
 public class AnswerDTO {
     @NotBlank(message = "Debe existir el userId para este objeto")
     private String userId;
@@ -14,8 +17,6 @@ public class AnswerDTO {
     private String answer;
 
     private Integer position;
-
-
     public AnswerDTO() {
 
     }
