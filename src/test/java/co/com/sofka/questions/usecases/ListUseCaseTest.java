@@ -26,7 +26,7 @@ class ListUseCaseTest {
 
     @Test
      void getValidationTest(){
-        var question =  new Question();
+        Question question =  new Question();
         question.setUserId("xxxx-xxxx");
         question.setType("tech");
         question.setCategory("software");
