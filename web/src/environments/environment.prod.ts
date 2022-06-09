@@ -7,6 +7,5 @@ export const environment = {
     storageBucket: "sofkau-reto.appspot.com",
     messagingSenderId: "102782956929",
     measurementId: "G-MX6F56NV8R"
-  }
-
+  } 
 };
