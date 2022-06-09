@@ -26,16 +26,18 @@ export class PreguntasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getQuestions();
-    this.traerdatos();
+    // this.getQuestions();
+    // this.traerdatos();
+    this.traerPresguntas();
+    //
   }
 
   getQuestions(): void {
-    this.userLogged.subscribe(value =>{
-        this.uid=value?.uid
+    this.userLogged.subscribe((value) => {
+      this.uid = value?.uid;
     });
     this.service.getPage(this.page).subscribe((data) => {
-        this.questions = data;
+      this.questions = data;
     });
     this.service
       .getTotalPages()
@@ -68,12 +70,20 @@ export class PreguntasComponent implements OnInit {
   }
 
   traerdatos() {
-    this.userLogged.subscribe((value) => {     
+    this.userLogged.subscribe((value) => {
       if (value?.email == undefined) {
-        this.disabled = true;       
+        this.disabled = true;
       } else {
-        this.disabled = false;     
+        this.disabled = false;
       }
+    });
+  }
+
+  traerPresguntas() {
+    this.questions = [];
+    this.service.getAllQuestions().subscribe((data) => {
+      this.totalQuestions = data.length;
+      this.questions = data;
     });
   }
 }

@@ -12,9 +12,7 @@ export class QuestionService {
     throw new Error('Method not implemented.');
   }
 
-
   private url: string = 'http://localhost:8080/';
-
 
   constructor(private http: HttpClient) {}
 
@@ -58,5 +56,10 @@ export class QuestionService {
   editQuestion(question: QuestionI): Observable<any> {
     let direction = this.url + 'update';
     return this.http.post<any>(direction, question);
+  }
+
+  getAllQuestions(): Observable<QuestionI[]> {
+    let direction = this.url + 'getAll';
+    return this.http.get<QuestionI[]>(direction);
   }
 }
