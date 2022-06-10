@@ -31,7 +31,8 @@ export class QuestionComponent implements OnInit {
     type: '',
     category: '',
     answers:[null],
-    start: '2'
+    start: '2',
+    
   };
 
   constructor(
@@ -52,6 +53,7 @@ export class QuestionComponent implements OnInit {
   saveQuestion(question: QuestionI): void {
     if(question.type && question.category){    
      this.modalService.dismissAll();
+     alert("email:" + question.email);
      this.services.saveQuestion(question).subscribe({
        next: (v) => {       
          if (v) {

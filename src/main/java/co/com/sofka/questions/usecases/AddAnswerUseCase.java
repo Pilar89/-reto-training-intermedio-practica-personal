@@ -17,6 +17,7 @@ public class AddAnswerUseCase implements SaveAnswer {
     private final MapperUtils mapperUtils;
     private final GetUseCase getUseCase;
     private final QuestioServicio serviceQuestion;
+
     public AddAnswerUseCase(MapperUtils mapperUtils, GetUseCase getUseCase, AnswerRepository answerRepository, QuestioServicio serviceQuestion) {
         this.answerRepository = answerRepository;
         this.getUseCase = getUseCase;
@@ -30,7 +31,8 @@ public class AddAnswerUseCase implements SaveAnswer {
                 answerRepository.save(mapperUtils.mapperToAnswer().apply(answerDTO))
                         .map(answer -> {
                             question.getAnswers().add(answerDTO);
-                            serviceQuestion.enviarCorreo(question.getEmail(),"Han respondido tu pregunta","Algun usuario acaba de responder la siguiente pregunta: "+"http://localhost:3000/question/"+question.getId());
+                            System.out.println("probando correo:" + question.getEmail());
+                            serviceQuestion.enviarCorreo(question.getEmail(),"Han respondido tu pregunta","Algun usuario acaba de responder la siguiente pregunta:");
                             return question;
                         })
         );

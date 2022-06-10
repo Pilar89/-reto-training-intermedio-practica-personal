@@ -8,6 +8,7 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class QuestioServicio implements IServiceQuestion {
+
     private final JavaMailSender javaMailSender;
 
     public QuestioServicio(JavaMailSender javaMailSender) {
@@ -18,7 +19,7 @@ public class QuestioServicio implements IServiceQuestion {
     public Mono<String> enviarCorreo(String correoDestino, String asunto, String cuerpo) {
 
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom("aquestion362@gmail.com");
+        simpleMailMessage.setFrom("questionsofkau@gmail.com");
         simpleMailMessage.setTo(correoDestino);
         simpleMailMessage.setSubject(asunto);
         simpleMailMessage.setText(cuerpo);
