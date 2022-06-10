@@ -1,6 +1,8 @@
 package co.com.sofka.questions.model;
 
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
@@ -9,6 +11,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@Setter
+@Getter
 //@Document(collection="questions")
 public class QuestionDTO {
     private String id;
@@ -21,6 +25,7 @@ public class QuestionDTO {
     @NotBlank
     private String category;
     private List<AnswerDTO> answers;
+    private String email;
 
 
     public QuestionDTO() {
@@ -34,61 +39,13 @@ public class QuestionDTO {
         this.category = category;
     }
 
-    public QuestionDTO(String id, String userId, String question, String type, String category) {
+    public QuestionDTO(String id, String userId, String question, String type, String category, String correo) {
         this.id = id;
         this.userId = userId;
         this.question = question;
         this.type = type;
         this.category = category;
-    }
-
-    public List<AnswerDTO> getAnswers() {
-        this.answers = Optional.ofNullable(answers).orElse(new ArrayList<>());
-        return answers;
-    }
-
-    public void setAnswers(List<AnswerDTO> answers) {
-        this.answers = answers;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
+        this.email =correo;
     }
 
     @Override

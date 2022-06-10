@@ -14,6 +14,8 @@ export class QuestionService {
 
   private url: string = 'http://localhost:8080/';
 
+ 
+
   constructor(private http: HttpClient) {}
 
   getPage(page: number): Observable<QuestionI[]> {
@@ -25,6 +27,8 @@ export class QuestionService {
     let direction = this.url + 'get/' + id;
     return this.http.get<QuestionI>(direction);
   }
+
+
 
   getQuestion(id: string): Observable<QuestionI> {
     let direction = this.url + 'get/' + id;

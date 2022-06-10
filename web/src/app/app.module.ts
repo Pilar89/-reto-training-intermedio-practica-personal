@@ -23,6 +23,7 @@ import { RequestionComponent } from './paginas/requestion/requestion.component';
 import { EditComponent } from './paginas/edit/edit.component';
 import { RetrievePasswordComponent } from './persona/retrieve-password/retrieve-password.component';
 import { EditAswerComponent } from './paginas/edit-answer/edit-answer.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { EditAswerComponent } from './paginas/edit-answer/edit-answer.component'
     NgbModule,
     FormsModule,
     ToastrModule.forRoot(),
+    InfiniteScrollModule,
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent],
