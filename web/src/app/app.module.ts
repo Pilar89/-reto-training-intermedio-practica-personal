@@ -8,12 +8,12 @@ import { LoginComponent } from './persona/login/login.component';
 import { PreguntasComponent } from './persona/preguntas/preguntas.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularFireModule} from '@angular/fire/compat'
+import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegistroComponent } from './persona/registro/registro.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { AnswerComponent } from './paginas/answer/answer.component';
 import { QuestionComponent } from './paginas/question/question.component';
@@ -22,8 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { RequestionComponent } from './paginas/requestion/requestion.component';
 import { EditComponent } from './paginas/edit/edit.component';
 import { RetrievePasswordComponent } from './persona/retrieve-password/retrieve-password.component';
-
-
+import { EditAswerComponent } from './paginas/edit-answer/edit-answer.component';
 
 @NgModule({
   declarations: [
@@ -31,13 +30,13 @@ import { RetrievePasswordComponent } from './persona/retrieve-password/retrieve-
     LoginComponent,
     PreguntasComponent,
     NavbarComponent,
-    RegistroComponent, 
+    RegistroComponent,
     AnswerComponent,
     QuestionComponent,
     RequestionComponent,
     EditComponent,
     RetrievePasswordComponent,
-       
+    EditAswerComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,12 +48,9 @@ import { RetrievePasswordComponent } from './persona/retrieve-password/retrieve-
     HttpClientModule,
     NgbModule,
     FormsModule,
-    ToastrModule.forRoot()
-    
-   
-    
+    ToastrModule.forRoot(),
   ],
   providers: [HttpClientModule],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -15,8 +15,6 @@ import { ServiceService } from 'src/app/Service/service.service';
   providers: [MessageService],
 })
 export class AnswerComponent implements OnInit {
-
-  
   public form: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(10)]],
@@ -26,6 +24,7 @@ export class AnswerComponent implements OnInit {
   @Input() item: any;
   constructor(
     private modalService: NgbModal,
+    private modalServiceEdit: NgbModal,
     private services: QuestionService,
     private toastr: ToastrService,
     private route: Router,
@@ -41,36 +40,56 @@ export class AnswerComponent implements OnInit {
     position: 0,
   };
 
-  ngOnInit(): void {}
+  localitems!: string | null;
+
+  ngOnInit(): void {
+    this.getUserId();
+  }
 
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
+  }
+  openVerticallyCenteredEdit(content: any) {
+    this.modalServiceEdit.open(content, { centered: true });
   }
 
   saveAnswer(): void {
     this.answer.userId = this.item.userId;
     this.answer.questionId = this.item.id;
+    if (this.localitems != null) {
+      this.answer.userId = this.localitems;
+    }
+
     this.services.saveAnswer(this.answer).subscribe({
       next: (v) => {
-        if(v){
+        if (v) {
           this.modalService.dismissAll();
           this.messageService.add({
             severity: 'success',
             summary: 'Se ha agregado la respuesta',
-            
-           });
-           setTimeout(() => {
-           window.location.reload();
-         }, 1000);
-        }        
+          });
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        }
       },
       error: (e) =>
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Rectifique los datos',
-        detail: '(Campos Vacios)-Intente de Nuevo',
-      }),
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Rectifique los datos',
+          detail: '(Campos Vacios)-Intente de Nuevo',
+        }),
       complete: () => console.info('complete'),
     });
+  }
+
+  getUserId(): void {
+    this.localitems = localStorage.getItem('user');
+    if (typeof this.localitems === 'string') {
+      const parse = JSON.parse(this.localitems).uid; // ok
+      this.localitems = parse;
+    }
+
+    //console.log(JSON.parse(localStorage.getItem('user')).uid);
   }
 }

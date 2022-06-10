@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { map } from '@firebase/util';
 import { QuestionI } from 'src/app/models/question-i';
 import { QuestionService } from 'src/app/Service/question.service';
 import { ServiceService } from 'src/app/Service/service.service';
@@ -11,14 +12,16 @@ import { ServiceService } from 'src/app/Service/service.service';
 export class PreguntasComponent implements OnInit {
   userLogged = this.authService.getUserLogged();
   uid: any;
-
   totalQuestions: number = 0;
-
   questions: QuestionI[] | undefined;
   user: any = '';
+  totalPages: number = 0;
   page: number = 0;
+  actualPage = 1;
   pages: Array<number> | undefined;
   disabled: boolean = false;
+  initIndex: number = 0;
+  finalIndex: number = 10;
 
   constructor(
     private service: QuestionService,
@@ -26,25 +29,37 @@ export class PreguntasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.getQuestions();
-    // this.traerdatos();
-    this.traerPresguntas();
-    //
+    this.getQuestions();
+    this.traerdatos();
+    //this.traerPresguntas();
   }
 
   getQuestions(): void {
     this.userLogged.subscribe((value) => {
       this.uid = value?.uid;
     });
-    this.service.getPage(this.page).subscribe((data) => {
+
+    this.questions = [];
+    this.service.getAllQuestions().subscribe((data) => {
+      this.totalQuestions = data.length;
       this.questions = data;
+      this.totalPages = Math.ceil(data.length / 10);
+      this.pages = Array.from(Array(Math.ceil(data.length / 10)).keys()).map(
+        (i) => i + 1
+      );
     });
-    this.service
-      .getTotalPages()
-      .subscribe((data) => (this.pages = new Array(data)));
-    this.service
-      .getCountQuestions()
-      .subscribe((data) => (this.totalQuestions = data));
+    // this.service.getPage(this.page).subscribe((data) => {
+    //   this.questions = data;
+    // });
+    // this.service.getPage(this.page).subscribe((data) => {
+    //   this.questions = data;
+    // });
+    // this.service
+    //   .getTotalPages()
+    //   .subscribe((data) => (this.pages = new Array(data)));
+    // this.service
+    //   .getCountQuestions()
+    //   .subscribe((data) => (this.totalQuestions = data));
   }
 
   isLast(): boolean {
@@ -57,16 +72,35 @@ export class PreguntasComponent implements OnInit {
   }
 
   previousPage(): void {
-    !this.isFirst() ? (this.page--, this.getQuestions()) : false;
+    !this.isFirst()
+      ? (this.page--,
+        this.getQuestions(),
+        (this.initIndex -= 10),
+        (this.finalIndex -= 10))
+      : false;
+    if (this.initIndex <= 0) {
+      this.initIndex = 0;
+      this.finalIndex = 10;
+    }
   }
 
   nextPage(): void {
-    !this.isLast() ? (this.page++, this.getQuestions()) : false;
+    !this.isLast()
+      ? (this.page++,
+        this.getQuestions(),
+        (this.initIndex += 10),
+        (this.finalIndex += 10))
+      : false;
   }
 
   getPage(page: number): void {
-    this.page = page;
-    this.getQuestions();
+    this.initIndex = page * 10;
+    this.finalIndex = (page + 1) * 10;
+    console.log(this.initIndex);
+    console.log(this.finalIndex);
+
+    // this.page = page;
+    // this.getQuestions();
   }
 
   traerdatos() {
@@ -76,14 +110,6 @@ export class PreguntasComponent implements OnInit {
       } else {
         this.disabled = false;
       }
-    });
-  }
-
-  traerPresguntas() {
-    this.questions = [];
-    this.service.getAllQuestions().subscribe((data) => {
-      this.totalQuestions = data.length;
-      this.questions = data;
     });
   }
 }
