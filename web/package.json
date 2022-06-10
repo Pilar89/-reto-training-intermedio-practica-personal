@@ -33,6 +33,7 @@
     "firebase": "^9.8.2",
     "jquerry": "^0.0.1-security",
     "jquery": "^3.6.0",
+    "ngx-infinite-scroll": "^13.0.2",
     "ngx-toastr": "^14.3.0",
     "path": "^0.12.7",
     "popper.js": "^1.16.1",

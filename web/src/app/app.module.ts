@@ -22,6 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { RequestionComponent } from './paginas/requestion/requestion.component';
 import { EditComponent } from './paginas/edit/edit.component';
 import { RetrievePasswordComponent } from './persona/retrieve-password/retrieve-password.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 
@@ -49,8 +50,8 @@ import { RetrievePasswordComponent } from './persona/retrieve-password/retrieve-
     HttpClientModule,
     NgbModule,
     FormsModule,
-    ToastrModule.forRoot()
-    
+    ToastrModule.forRoot(),
+    InfiniteScrollModule
    
     
   ],
