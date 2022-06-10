@@ -27,14 +27,12 @@
         </div>
       </div>
     </div>
-
-    <!-- Respuesta -->
-
     <div class="col-4">
-      <section class="character_list" 
-      infiniteScroll
-      (scrolled)="onScrollDown()">
-        
+      <section
+        class="character_list"
+        infiniteScroll
+        (scrolled)="onScrollDown()"
+      >
         <div
           class="accordion"
           id="accordionExample"
@@ -56,6 +54,8 @@
                   [(ngModel)]="questions.position"
                   [disabled]="true"
                 ></p-rating>
+
+                <!-- Respuesta -->
               </button>
             </h2>
             <div
@@ -69,9 +69,19 @@
                 <strong></strong>
               </div>
             </div>
+            <div class="row">
+              <app-edit-aswer
+                [answer]="questions"
+                *ngIf="questions.userId == userId"
+                class="col-md-2 offset-md-9"
+              ></app-edit-aswer>
+              <span class="p-float-label" style="margin: 4px"></span>
+            </div>
           </div>
         </div>
-        <button *ngIf="showButto" class="button"  (click)="onScrollTop()">⬆️</button>
+        <button *ngIf="showButto" class="button" (click)="onScrollTop()">
+          ⬆️
+        </button>
       </section>
     </div>
   </div>

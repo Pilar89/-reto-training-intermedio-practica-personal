@@ -13,6 +13,7 @@ import java.util.Optional;
 @Setter
 //@Document(collection="answers")
 public class AnswerDTO {
+    private String id;
     @NotBlank(message = "Debe existir el userId para este objeto")
     private String userId;
     @NotBlank
@@ -25,9 +26,50 @@ public class AnswerDTO {
 
     }
 
-    public AnswerDTO(@NotBlank String questionId, @NotBlank String userId, @NotBlank String answer) {
+    public AnswerDTO(String id, @NotBlank String questionId, @NotBlank String userId, @NotBlank String answer) {
+        this.id = id;
         this.userId = userId;
         this.questionId = questionId;
+        this.answer = answer;
+    }
+
+    public String getId() {
+      return id;
+    }
+
+    public void setId(String id) {
+      this.id = id;
+    }
+
+    public Integer getPosition() {
+        return Optional.ofNullable(position).orElse(1);
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(String questionId) {
+        this.questionId = questionId;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
 
@@ -44,12 +86,14 @@ public class AnswerDTO {
         return Objects.hash(userId);
     }
 
-    @Override
-    public String toString() {
-        return "AnswerDTO{" +
-                "userId='" + userId + '\'' +
-                ", questionId='" + questionId + '\'' +
-                ", answer='" + answer + '\'' +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "AnswerDTO{" +
+      "id='" + id + '\'' +
+      ", userId='" + userId + '\'' +
+      ", questionId='" + questionId + '\'' +
+      ", answer='" + answer + '\'' +
+      ", position=" + position +
+      '}';
+  }
 }

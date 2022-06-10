@@ -9,18 +9,18 @@ import { MessageService } from 'primeng/api';
 import { ServiceService } from 'src/app/Service/service.service';
 
 @Component({
-  selector: 'app-answer',
-  templateUrl: './answer.component.html',
+  selector: 'app-edit-aswer',
+  templateUrl: './edit-answer.component.html',
+  styleUrls: ['./edit-answer.component.css'],
   providers: [MessageService],
 })
-export class AnswerComponent implements OnInit {
+export class EditAswerComponent implements OnInit {
   public form: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(10)]],
     rating: ['', []],
   });
 
-  @Input() item: any;
   constructor(
     private modalService: NgbModal,
     private modalServiceEdit: NgbModal,
@@ -32,19 +32,15 @@ export class AnswerComponent implements OnInit {
     public authService: ServiceService
   ) {}
 
-  answer: AnswerI = {
+  @Input() answer: AnswerI = {
+    id: '',
     userId: '',
     questionId: '',
     answer: '',
     position: 0,
   };
 
-  localitems!: string | null;
-
-  ngOnInit(): void {
-    this.getUserId();
-  }
-
+  ngOnInit(): void {}
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
   }
@@ -53,12 +49,6 @@ export class AnswerComponent implements OnInit {
   }
 
   saveAnswer(): void {
-    this.answer.userId = this.item.userId;
-    this.answer.questionId = this.item.id;
-    if (this.localitems != null) {
-      this.answer.userId = this.localitems;
-    }
-
     this.services.saveAnswer(this.answer).subscribe({
       next: (v) => {
         if (v) {
@@ -80,15 +70,5 @@ export class AnswerComponent implements OnInit {
         }),
       complete: () => console.info('complete'),
     });
-  }
-
-  getUserId(): void {
-    this.localitems = localStorage.getItem('user');
-    if (typeof this.localitems === 'string') {
-      const parse = JSON.parse(this.localitems).uid; // ok
-      this.localitems = parse;
-    }
-
-    //console.log(JSON.parse(localStorage.getItem('user')).uid);
   }
 }

@@ -1,7 +1,7 @@
+import { AnswerI } from './../../models/answer-i';
 import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AnswerI } from 'src/app/models/answer-i';
 import { QuestionI } from 'src/app/models/question-i';
 import { QuestionService } from 'src/app/Service/question.service';
 
@@ -15,6 +15,8 @@ export class RequestionComponent implements OnInit {
   answers: AnswerI[] | undefined;
   answersNew: AnswerI[] = [];
   currentAnswer: number = 0;
+  userId?: string;
+  localitems!: string | null;
   showButto = false;
   private scrolHeigt = 100;
 
@@ -35,6 +37,7 @@ export class RequestionComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.getQuestions(`${id}`);
     this.get2();
+    this.getUserId();
   }
 
   get2() {
@@ -58,6 +61,16 @@ export class RequestionComponent implements OnInit {
     this.currentAnswer += 10;
   }
 
+  getUserId(): void {
+    this.localitems = localStorage.getItem('user');
+    if (typeof this.localitems === 'string') {
+      const parse = JSON.parse(this.localitems).uid; // ok
+      this.userId = parse;
+    }
+  }
+
+  onScroll() {}
+
   @HostListener('window:scroll')
   onWindowScroll(): void {
     const yOffset = window.pageXOffset;
@@ -67,14 +80,11 @@ export class RequestionComponent implements OnInit {
   onScrollTop(): void {
     this.document.documentElement.scrollTop = 0;
   }
-
-  onScrollDown():void{
-   
+  onScrollDown(): void {
     let id = this.route.snapshot.paramMap.get('id');
 
     this.service.getAnswer(id).subscribe((data) => {
       this.answers = data.answers;
-    }); 
+    });
   }
 }
-
