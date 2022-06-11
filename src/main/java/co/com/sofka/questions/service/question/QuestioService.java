@@ -1,17 +1,20 @@
 package co.com.sofka.questions.service.question;
 
 import co.com.sofka.questions.service.IServiceQuestion;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 @Service
-public class QuestioServicio implements IServiceQuestion {
+public class QuestioService implements IServiceQuestion {
 
+    @Autowired
     private final JavaMailSender javaMailSender;
 
-    public QuestioServicio(JavaMailSender javaMailSender) {
+
+    public QuestioService(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
 

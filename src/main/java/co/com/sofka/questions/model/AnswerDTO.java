@@ -9,8 +9,6 @@ import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 import java.util.Optional;
 
-@Getter
-@Setter
 //@Document(collection="answers")
 public class AnswerDTO {
     private String id;

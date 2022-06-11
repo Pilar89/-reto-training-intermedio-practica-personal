@@ -35,6 +35,10 @@ export class QuestionComponent implements OnInit {
     
   };
 
+  localitems!: string | null;
+
+  userEmail?:string;
+
   constructor(
     private modalService: NgbModal,
     private authService: ServiceService,
@@ -44,16 +48,30 @@ export class QuestionComponent implements OnInit {
     private messageService: MessageService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUserEmail();
+  }
 
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
   }
 
+  getUserEmail(): void {
+    this.localitems = localStorage.getItem('user');
+    if (typeof this.localitems === 'string') {
+      const parse = JSON.parse(this.localitems).email; // ok
+      this.userEmail = parse;
+    }
+    console.log("correo usuario: " + this.userEmail)
+  }
+
+
+
   saveQuestion(question: QuestionI): void {
     if(question.type && question.category){    
      this.modalService.dismissAll();
-     alert("email:" + question.email);
+     question.email=this.userEmail;
+     alert(question.email)
      this.services.saveQuestion(question).subscribe({
        next: (v) => {       
          if (v) {
@@ -66,7 +84,6 @@ export class QuestionComponent implements OnInit {
             window.location.reload();
           }, 2000);
         } else {
-          
         }
       },
       error: (e) =>
@@ -76,7 +93,6 @@ export class QuestionComponent implements OnInit {
       complete: () => console.info('complete'),
     });
   }else{
-   
     this.messageService.add({
       severity: 'error',
       summary: 'Rectifique los datos',
