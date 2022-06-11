@@ -71,6 +71,7 @@ export class PreguntasComponent implements OnInit {
   }
 
   getTotalPages() {
-    return Math.ceil((this.questions?.length || 0) / this.pageSize);
+    let totalQuestions = this.questions?.length || 1;
+    return Math.ceil(totalQuestions / this.pageSize);
   }
 }
