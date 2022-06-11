@@ -16,6 +16,7 @@ public class MapperUtils {
             var answer = new Answer();
             answer.setId(updateAnswer.getId());
             answer.setPosition(updateAnswer.getPosition());
+            answer.setNumberOfVotes(updateAnswer.getNumberOfVotes());
             answer.setQuestionId(updateAnswer.getQuestionId());
             answer.setUserId(updateAnswer.getUserId());
             answer.setAnswer(updateAnswer.getAnswer());
@@ -54,7 +55,9 @@ public class MapperUtils {
             entity.getId(),
             entity.getQuestionId(),
             entity.getUserId(),
-            entity.getAnswer()
+            entity.getAnswer(),
+            entity.getNumberOfVotes(),
+            entity.getPosition()
           );
         };
     }

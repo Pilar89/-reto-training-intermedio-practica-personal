@@ -1,5 +1,4 @@
 package co.com.sofka.questions.usecases;
-
 import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.QuestionDTO;
 import co.com.sofka.questions.reposioties.AnswerRepository;
@@ -25,15 +24,13 @@ public class AddAnswerUseCase implements SaveAnswer {
     }
 
     public Mono<QuestionDTO> apply(AnswerDTO answerDTO) {
-        System.out.println(answerDTO);
         Objects.requireNonNull(answerDTO.getQuestionId(), "Id of the answer is required");
         return getUseCase.apply(answerDTO.getQuestionId()).flatMap(question -> {
                 var answer = mapperUtils.mapperToAnswer().apply(answerDTO);
-                System.out.println(answer);
                 return answerRepository.save(answer)
                         .map(i -> {
                             question.getAnswers().add(answerDTO);
-                            serviceQuestion.enviarCorreo(question.getEmail(),"Han respondido tu pregunta","Algun usuario acaba de responder la siguiente pregunta: "+"http://localhost:3000/question/"+question.getId());
+                            //serviceQuestion.enviarCorreo(question.getEmail(),"Han respondido tu pregunta","Algun usuario acaba de responder la siguiente pregunta: "+"http://localhost:3000/question/"+question.getId());
                             return question;
                         });
             }

@@ -20,17 +20,25 @@ public class AnswerDTO {
     private String questionId;
     @NotBlank
     private String answer;
-
+    private Integer numberOfVotes;
     private Integer position;
     public AnswerDTO() {
 
     }
 
-    public AnswerDTO(String id, @NotBlank String questionId, @NotBlank String userId, @NotBlank String answer) {
+    public AnswerDTO(
+      String id,
+      @NotBlank String questionId,
+      @NotBlank String userId,
+      @NotBlank String answer,
+      Integer numberOfVote,
+      Integer position) {
         this.id = id;
         this.userId = userId;
         this.questionId = questionId;
         this.answer = answer;
+        this.numberOfVotes = numberOfVote;
+        this.position = position;
     }
 
     public String getId() {
@@ -42,7 +50,7 @@ public class AnswerDTO {
     }
 
     public Integer getPosition() {
-        return Optional.ofNullable(position).orElse(1);
+        return Optional.ofNullable(position).orElse(0);
     }
 
     public void setPosition(Integer position) {
@@ -73,7 +81,15 @@ public class AnswerDTO {
         this.answer = answer;
     }
 
-    @Override
+  public Integer getNumberOfVotes() {
+    return Optional.ofNullable(position).orElse(0);
+  }
+
+  public void setNumberOfVotes(Integer numberOfVotes) {
+    this.numberOfVotes = numberOfVotes;
+  }
+
+  @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -86,14 +102,15 @@ public class AnswerDTO {
         return Objects.hash(userId);
     }
 
-  @Override
-  public String toString() {
-    return "AnswerDTO{" +
-      "id='" + id + '\'' +
-      ", userId='" + userId + '\'' +
-      ", questionId='" + questionId + '\'' +
-      ", answer='" + answer + '\'' +
-      ", position=" + position +
-      '}';
-  }
+    @Override
+    public String toString() {
+      return "AnswerDTO{" +
+        "id='" + id + '\'' +
+        ", userId='" + userId + '\'' +
+        ", questionId='" + questionId + '\'' +
+        ", answer='" + answer + '\'' +
+        ", numberOfVotes=" + numberOfVotes +
+        ", position=" + position +
+        '}';
+    }
 }

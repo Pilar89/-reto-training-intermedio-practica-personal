@@ -4,4 +4,5 @@ export interface AnswerI {
   questionId: string;
   answer: string;
   position: number;
+  numberOfVotes: number;
 }

@@ -52,8 +52,10 @@
                 <p-rating
                   [cancel]="false"
                   [(ngModel)]="questions.position"
-                  [disabled]="true"
+                  [disabled]="false"
+                  (click)="agregarCalificacion(questions, questions.position)"
                 ></p-rating>
+                <h2>4.5</h2>
 
                 <!-- Respuesta -->
               </button>

@@ -37,6 +37,7 @@ export class AnswerComponent implements OnInit {
     questionId: '',
     answer: '',
     position: 0,
+    numberOfVotes: 0,
   };
 
   localitems!: string | null;
