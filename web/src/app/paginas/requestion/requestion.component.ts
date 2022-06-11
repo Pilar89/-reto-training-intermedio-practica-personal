@@ -55,6 +55,11 @@ export class RequestionComponent implements OnInit {
 
   getQuestions(id: string): void {
     this.questionService.getQuestion(id).subscribe((data) => {
+      data.answers.sort((a, b) => {
+        let calificacionA = this.calcularCalificacionRespuesta(a);
+        let calificacionB = this.calcularCalificacionRespuesta(b);
+        return calificacionB - calificacionA;
+      });
       this.question = data;
       this.answers = data.answers;
     });
