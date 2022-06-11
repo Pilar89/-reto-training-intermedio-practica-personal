@@ -37,6 +37,7 @@ export class AnswerComponent implements OnInit {
     questionId: '',
     answer: '',
     position: 0,
+    numberOfVotes: 0,
   };
 
   localitems!: string | null;
@@ -88,7 +89,5 @@ export class AnswerComponent implements OnInit {
       const parse = JSON.parse(this.localitems).uid; // ok
       this.localitems = parse;
     }
-
-    //console.log(JSON.parse(localStorage.getItem('user')).uid);
   }
 }

@@ -38,6 +38,7 @@ export class EditAswerComponent implements OnInit {
     questionId: '',
     answer: '',
     position: 0,
+    numberOfVotes: 0,
   };
 
   ngOnInit(): void {}

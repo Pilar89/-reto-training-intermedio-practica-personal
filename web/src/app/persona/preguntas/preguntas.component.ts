@@ -10,18 +10,15 @@ import { ServiceService } from 'src/app/Service/service.service';
   styleUrls: ['./preguntas.component.css'],
 })
 export class PreguntasComponent implements OnInit {
+  Math = Math;
   userLogged = this.authService.getUserLogged();
   uid: any;
-  totalQuestions: number = 0;
   questions: QuestionI[] | undefined;
   user: any = '';
   totalPages: number = 0;
-  page: number = 0;
-  actualPage = 1;
-  pages: Array<number> | undefined;
+  currentPage: number = 0;
+  pageSize = 10;
   disabled: boolean = false;
-  initIndex: number = 0;
-  finalIndex: number = 10;
 
   constructor(
     private service: QuestionService,
@@ -31,7 +28,6 @@ export class PreguntasComponent implements OnInit {
   ngOnInit(): void {
     this.getQuestions();
     this.traerdatos();
-    //this.traerPresguntas();
   }
 
   getQuestions(): void {
@@ -41,66 +37,27 @@ export class PreguntasComponent implements OnInit {
 
     this.questions = [];
     this.service.getAllQuestions().subscribe((data) => {
-      this.totalQuestions = data.length;
       this.questions = data;
       this.totalPages = Math.ceil(data.length / 10);
-      this.pages = Array.from(Array(Math.ceil(data.length / 10)).keys()).map(
-        (i) => i + 1
-      );
     });
-    // this.service.getPage(this.page).subscribe((data) => {
-    //   this.questions = data;
-    // });
-    // this.service.getPage(this.page).subscribe((data) => {
-    //   this.questions = data;
-    // });
-    // this.service
-    //   .getTotalPages()
-    //   .subscribe((data) => (this.pages = new Array(data)));
-    // this.service
-    //   .getCountQuestions()
-    //   .subscribe((data) => (this.totalQuestions = data));
-  }
-
-  isLast(): boolean {
-    let totalPeges: any = this.pages?.length;
-    return this.page == totalPeges - 1;
-  }
-
-  isFirst(): boolean {
-    return this.page == 0;
   }
 
   previousPage(): void {
-    !this.isFirst()
-      ? (this.page--,
-        this.getQuestions(),
-        (this.initIndex -= 10),
-        (this.finalIndex -= 10))
-      : false;
-    if (this.initIndex <= 0) {
-      this.initIndex = 0;
-      this.finalIndex = 10;
+    if (this.currentPage > 0) {
+      this.currentPage -= 1;
     }
   }
 
   nextPage(): void {
-    !this.isLast()
-      ? (this.page++,
-        this.getQuestions(),
-        (this.initIndex += 10),
-        (this.finalIndex += 10))
-      : false;
+    if (this.currentPage + 1 >= this.getTotalPages()) {
+      return;
+    }
+
+    this.currentPage = this.currentPage + 1;
   }
 
   getPage(page: number): void {
-    this.initIndex = page * 10;
-    this.finalIndex = (page + 1) * 10;
-    console.log(this.initIndex);
-    console.log(this.finalIndex);
-
-    // this.page = page;
-    // this.getQuestions();
+    this.currentPage = page;
   }
 
   traerdatos() {
@@ -111,5 +68,10 @@ export class PreguntasComponent implements OnInit {
         this.disabled = false;
       }
     });
+  }
+
+  getTotalPages() {
+    let totalQuestions = this.questions?.length || 1;
+    return Math.ceil(totalQuestions / this.pageSize);
   }
 }

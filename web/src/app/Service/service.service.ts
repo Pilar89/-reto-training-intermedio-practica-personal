@@ -33,17 +33,14 @@ export class ServiceService {
 
   async login(email: string, password: string) {
     try {
-      return await this.afauth
-        .signInWithEmailAndPassword(email, password)      
-        
+      return await this.afauth.signInWithEmailAndPassword(email, password);
     } catch (error) {
       return null;
     }
   }
   async loginRegistre(email: string, password: string) {
     try {
-      return await this.afauth
-        .createUserWithEmailAndPassword(email, password)        
+      return await this.afauth.createUserWithEmailAndPassword(email, password);
     } catch (error) {
       return null;
     }
@@ -58,8 +55,9 @@ export class ServiceService {
   }
   async loginGoogle(email: string, password: string) {
     try {
-      return await this.afauth
-        .signInWithPopup(new firebase.auth.GoogleAuthProvider())       
+      return await this.afauth.signInWithPopup(
+        new firebase.auth.GoogleAuthProvider()
+      );
     } catch (error) {
       return null;
     }
@@ -68,7 +66,6 @@ export class ServiceService {
   getUserLogged() {
     return this.afauth.authState;
   }
-
 
   SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.store.doc(
@@ -84,5 +81,9 @@ export class ServiceService {
     return userRef.set(userData, {
       merge: true,
     });
+  }
+
+  async logout() {
+    return this.afauth.signOut();
   }
 }

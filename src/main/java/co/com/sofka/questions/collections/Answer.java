@@ -16,6 +16,9 @@ public class Answer {
     private String questionId;
     private String answer;
     private Integer position;
+    private Integer numberOfVotes;
+
+
 
     public Integer getPosition() {
         return position;
@@ -57,6 +60,14 @@ public class Answer {
         this.answer = answer;
     }
 
+  public Integer getNumberOfVotes() {
+    return numberOfVotes;
+  }
+
+  public void setNumberOfVotes(Integer numberOfVotes) {
+    this.numberOfVotes = numberOfVotes;
+  }
+
   @Override
   public String toString() {
     return "Answer{" +
@@ -65,6 +76,7 @@ public class Answer {
       ", questionId='" + questionId + '\'' +
       ", answer='" + answer + '\'' +
       ", position=" + position +
+      ", numberOfVotes=" + numberOfVotes +
       '}';
   }
 }

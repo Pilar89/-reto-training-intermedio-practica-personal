@@ -3,17 +3,15 @@ package co.com.sofka.questions.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.mongodb.core.mapping.Document;
+
 
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Setter
 @Getter
-//@Document(collection="questions")
+
 public class QuestionDTO {
     private String id;
     @NotBlank
