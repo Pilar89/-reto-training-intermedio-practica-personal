@@ -94,6 +94,11 @@ export class RequestionComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get('id');
 
     this.service.getAnswer(id).subscribe((data) => {
+      data.answers.sort((a, b) => {
+        let calificacionA = this.calcularCalificacionRespuesta(a);
+        let calificacionB = this.calcularCalificacionRespuesta(b);
+        return calificacionB - calificacionA;
+      });
       this.answers = data.answers;
     });
   }
