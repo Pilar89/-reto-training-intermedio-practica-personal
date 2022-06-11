@@ -54,48 +54,17 @@ export class EditComponent implements OnInit {
   }
 
   editQuestion(question: QuestionI): void {
-    this.services.editQuestion(question).subscribe((v) => {
-      //
+    this.services.saveQuestion(question).subscribe((v) => {
+      console.log({ v });
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Se ha actualizado la pregunta',
+      });
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
     });
 
     this.modalService.dismissAll();
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Se ha actualizado la pregunta',
-    });
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000);
-  }
-
-  saveQuestion(question: QuestionI): void {
-    if (question.type && question.category) {
-      this.modalService.dismissAll();
-      this.services.saveQuestion(question).subscribe({
-        next: (v) => {
-          if (v) {
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Se ha agregado la pregunta',
-            });
-            setTimeout(() => {
-              window.location.reload();
-            }, 2000);
-          } else {
-          }
-        },
-        error: (e) =>
-          this.toastr.error(e.mesaje, 'Fail', {
-            timeOut: 3000,
-          }),
-        complete: () => console.info('complete'),
-      });
-    } else {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Rectifique los datos',
-        detail: '(Campos Vacios)-Intente de Nuevo',
-      });
-    }
   }
 }
