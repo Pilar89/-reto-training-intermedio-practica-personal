@@ -55,7 +55,6 @@ export class EditComponent implements OnInit {
 
   editQuestion(question: QuestionI): void {
     this.services.saveQuestion(question).subscribe((v) => {
-      console.log({ v });
       this.messageService.add({
         severity: 'success',
         summary: 'Se ha actualizado la pregunta',

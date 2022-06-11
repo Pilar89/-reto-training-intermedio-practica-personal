@@ -24,7 +24,6 @@ export class NavbarComponent implements OnInit {
       } else {
         this.logged = false;
       }
-      console.log({ logged: this.logged });
     });
   }
 
