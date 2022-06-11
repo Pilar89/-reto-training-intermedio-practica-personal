@@ -16,7 +16,6 @@ import { ServiceService } from 'src/app/Service/service.service';
   providers: [MessageService],
 })
 export class EditComponent implements OnInit {
-  userLogged = this.authService.getUserLogged();
   // originalQuestion: es la pregunta original sin modificaciones
   @Input() originalQuestion?: QuestionI;
   // question es la pregunta que vamos a editar o crear
@@ -40,7 +39,9 @@ export class EditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userLogged.subscribe((value) => {});
+    this.authService.getUserLogged().subscribe((user) => {
+      this.question.email = user?.email || undefined;
+    });
 
     if (this.originalQuestion == null) return;
     // saco una copia de la pregunta original,
@@ -53,12 +54,9 @@ export class EditComponent implements OnInit {
   }
 
   editQuestion(question: QuestionI): void {
-    if (this.originalQuestion == null) return;
-
-    question.id = this.originalQuestion.id;
-    question.userId = this.originalQuestion.userId;
-
-    this.services.editQuestion(question).subscribe((v) => {});
+    this.services.editQuestion(question).subscribe((v) => {
+      //
+    });
 
     this.modalService.dismissAll();
     this.messageService.add({

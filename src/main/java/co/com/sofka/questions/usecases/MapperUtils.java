@@ -27,7 +27,7 @@ public class MapperUtils {
     public Function<QuestionDTO, Question> mapperToQuestion(String id) {
         return updateQuestion -> {
             var question = new Question();
-            question.setId(id);
+            question.setId(updateQuestion.getId());
             question.setUserId(updateQuestion.getUserId());
             question.setCategory(updateQuestion.getCategory());
             question.setQuestion(updateQuestion.getQuestion());
