@@ -98,35 +98,13 @@ export class RequestionComponent implements OnInit {
     return calificacion.toFixed(1);
   }
 
-  agregarCalificacion(answer: AnswerI, calificacion: number): void {
-    console.log('answer' + answer.answer);
-    //answer.answer = 'hello';
+  agregarCalificacion(answer: AnswerI, event: any): void {
+    let calificacion = event.value;
+    answer.position += calificacion;
+    answer.numberOfVotes += 1;
 
-    console.log('calificacion ' + calificacion);
-    answer.position = calificacion + answer.position;
-    console.log('numerodevotosantes' + answer.numberOfVotes);
-    answer.numberOfVotes = answer.numberOfVotes + 1;
-    console.log('numerodevostos despues' + answer.numberOfVotes);
-    this.service.saveAnswer(answer).subscribe({
-      next: (v) => {
-        if (v) {
-          this.modalService.dismissAll();
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Se ha agregado la respuesta',
-          });
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
-        }
-      },
-      error: (e) =>
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Rectifique los datos',
-          detail: '(Campos Vacios)-Intente de Nuevo',
-        }),
-      complete: () => console.info('complete'),
+    this.service.saveAnswer(answer).subscribe(() => {
+      window.location.reload();
     });
   }
 }

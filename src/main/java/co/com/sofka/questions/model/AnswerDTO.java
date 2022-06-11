@@ -82,7 +82,7 @@ public class AnswerDTO {
     }
 
   public Integer getNumberOfVotes() {
-    return Optional.ofNullable(position).orElse(0);
+    return Optional.ofNullable(this.numberOfVotes).orElse(0);
   }
 
   public void setNumberOfVotes(Integer numberOfVotes) {

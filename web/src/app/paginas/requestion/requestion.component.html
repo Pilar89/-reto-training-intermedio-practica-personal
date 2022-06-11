@@ -51,9 +51,9 @@
                 <h5 class="text-center">Respuesta:</h5>
                 <p-rating
                   [cancel]="false"
-                  [(ngModel)]="answer.position"
-                  [disabled]="false"
-                  (click)="agregarCalificacion(answer, answer.position)"
+                  [stars]="5"
+                  (onRate)="agregarCalificacion(answer, $event)"
+                  [ngModel]="this.calcularCalificacionRespuesta(answer)"
                 ></p-rating>
                 <h2>{{ this.calcularCalificacionRespuesta(answer) }}</h2>
 
