@@ -26,14 +26,8 @@ export class QuestionComponent implements OnInit {
     question: '',
     type: '',
     category: '',
-<<<<<<< HEAD
-    answers:[null],
-    start: '2',
-    
-=======
     answers: [],
     start: '2'
->>>>>>> ebb1196cb9ef5dda7b88a97dce8596e127c9e7d2
   };
 
   localitems!: string | null;

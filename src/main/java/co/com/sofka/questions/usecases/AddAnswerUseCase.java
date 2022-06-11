@@ -25,20 +25,11 @@ public class AddAnswerUseCase implements SaveAnswer {
 
     public Mono<QuestionDTO> apply(AnswerDTO answerDTO) {
         Objects.requireNonNull(answerDTO.getQuestionId(), "Id of the answer is required");
-<<<<<<< HEAD
         return getUseCase.apply(answerDTO.getQuestionId()).flatMap(question ->
                 answerRepository.save(mapperUtils.mapperToAnswer().apply(answerDTO))
                         .map(answer -> {
                             question.getAnswers().add(answerDTO);
                             serviceQuestion.enviarCorreo(question.getEmail(),"Han respondido tu pregunta","Algun usuario acaba de responder la siguiente pregunta: " + question.getQuestion());
-=======
-        return getUseCase.apply(answerDTO.getQuestionId()).flatMap(question -> {
-                var answer = mapperUtils.mapperToAnswer().apply(answerDTO);
-                return answerRepository.save(answer)
-                        .map(i -> {
-                            question.getAnswers().add(answerDTO);
-                            //serviceQuestion.enviarCorreo(question.getEmail(),"Han respondido tu pregunta","Algun usuario acaba de responder la siguiente pregunta: "+"http://localhost:3000/question/"+question.getId());
->>>>>>> ebb1196cb9ef5dda7b88a97dce8596e127c9e7d2
                             return question;
                         })
         );
