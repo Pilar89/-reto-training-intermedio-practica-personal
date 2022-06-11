@@ -16,7 +16,7 @@ export class PreguntasComponent implements OnInit {
   questions: QuestionI[] | undefined;
   user: any = '';
   totalPages: number = 0;
-  page: number = 0;
+  currentPage: number = 0;
   pageSize = 10;
   disabled: boolean = false;
 
@@ -43,22 +43,22 @@ export class PreguntasComponent implements OnInit {
   }
 
   previousPage(): void {
-    if (this.page > 0) {
-      this.page -= 1;
+    if (this.currentPage > 0) {
+      this.currentPage -= 1;
     }
   }
 
   nextPage(): void {
-    let newPage = this.page + 1;
+    let newPage = this.currentPage + 1;
     let totalPages = this.Math.ceil(
       (this.questions?.length || 0) / this.pageSize
     );
     if (newPage + 1 > totalPages) return;
-    this.page = newPage;
+    this.currentPage = newPage;
   }
 
   getPage(page: number): void {
-    this.page = page;
+    this.currentPage = page;
   }
 
   traerdatos() {
