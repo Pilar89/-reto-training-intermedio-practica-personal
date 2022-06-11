@@ -53,9 +53,11 @@
                   [cancel]="false"
                   [stars]="5"
                   (onRate)="agregarCalificacion(answer, $event)"
-                  [ngModel]="this.calcularCalificacionRespuesta(answer)"
+                  [ngModel]="Math.floor(calcularCalificacionRespuesta(answer))"
                 ></p-rating>
-                <h2>{{ this.calcularCalificacionRespuesta(answer) }}</h2>
+                <h2>
+                  {{ this.calcularCalificacionRespuesta(answer).toFixed(1) }}
+                </h2>
 
                 <!-- Respuesta -->
               </button>

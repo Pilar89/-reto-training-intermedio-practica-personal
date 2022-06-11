@@ -14,6 +14,7 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class RequestionComponent implements OnInit {
+  Math = Math;
   question: QuestionI | undefined;
   answers: AnswerI[] | undefined;
   answersNew: AnswerI[] = [];
@@ -95,7 +96,7 @@ export class RequestionComponent implements OnInit {
   calcularCalificacionRespuesta(answer: AnswerI) {
     let calificacion =
       answer.numberOfVotes < 1 ? 0 : answer.position / answer.numberOfVotes;
-    return calificacion.toFixed(1);
+    return calificacion;
   }
 
   agregarCalificacion(answer: AnswerI, event: any): void {
