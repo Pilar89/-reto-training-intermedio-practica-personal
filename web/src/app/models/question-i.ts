@@ -8,5 +8,4 @@ export interface QuestionI {
   category: string;
   answers: AnswerI[];
   start: string;
-
 }

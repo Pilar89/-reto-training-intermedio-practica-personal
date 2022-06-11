@@ -16,18 +16,18 @@ import { ServiceService } from 'src/app/Service/service.service';
   providers: [MessageService],
 })
 export class EditComponent implements OnInit {
-  @Input() question2: QuestionI[] | undefined;
   userLogged = this.authService.getUserLogged();
-  answers: AnswerI[] | undefined;
-  @Input() idanswer: any='';
-  question: answe = {
-    id:'',
-    userId:'',
+  // originalQuestion: es la pregunta original sin modificaciones
+  @Input() originalQuestion?: QuestionI;
+  // question es la pregunta que vamos a editar o crear
+  question: QuestionI = {
+    id: '',
+    userId: '',
     question: '',
     type: '',
     category: '',
-    answers:[null],
-    start: '2'
+    answers: [],
+    start: '2',
   };
 
   constructor(
@@ -40,75 +40,64 @@ export class EditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getData();
-    this.getDatos();
-  }
+    this.userLogged.subscribe((value) => {});
 
-  getDatos(){
-    this.question=this.idanswer;
+    if (this.originalQuestion == null) return;
+    // saco una copia de la pregunta original,
+    // porque si modifico la original se modifica tambien en el listado de preguntas
+    this.question = { ...this.originalQuestion };
   }
-  
 
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
   }
 
-  getData(){    
-    this.userLogged.subscribe(value=>{
-    })
-    
-  }
+  editQuestion(question: QuestionI): void {
+    if (this.originalQuestion == null) return;
 
+    question.id = this.originalQuestion.id;
+    question.userId = this.originalQuestion.userId;
 
-  editQuestion(question: QuestionI): void{
-     question.id=this.idanswer.id;
-    question.userId=this.idanswer.userId;
-
-    this.services.editQuestion(question).subscribe((v)=>{
-     
-    });
+    this.services.editQuestion(question).subscribe((v) => {});
 
     this.modalService.dismissAll();
     this.messageService.add({
       severity: 'success',
-      summary: 'Se ha actualizado la pregunta',          
-     });
+      summary: 'Se ha actualizado la pregunta',
+    });
     setTimeout(() => {
       window.location.reload();
     }, 2000);
   }
 
   saveQuestion(question: QuestionI): void {
-    if(question.type && question.category){    
-     this.modalService.dismissAll();
-     this.services.saveQuestion(question).subscribe({
-       next: (v) => {       
-         if (v) {
-           this.messageService.add({
-             severity: 'success',
-             summary: 'Se ha agregado la pregunta',
-             
+    if (question.type && question.category) {
+      this.modalService.dismissAll();
+      this.services.saveQuestion(question).subscribe({
+        next: (v) => {
+          if (v) {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Se ha agregado la pregunta',
             });
             setTimeout(() => {
-            window.location.reload();
-          }, 2000);
-        } else {
-          
-        }
-      },
-      error: (e) =>
-      this.toastr.error(e.mesaje, 'Fail', {
-        timeOut: 3000,
-      }),
-      complete: () => console.info('complete'),
-    });
-  }else{
-   
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Rectifique los datos',
-      detail: '(Campos Vacios)-Intente de Nuevo',
-    });
-  }
+              window.location.reload();
+            }, 2000);
+          } else {
+          }
+        },
+        error: (e) =>
+          this.toastr.error(e.mesaje, 'Fail', {
+            timeOut: 3000,
+          }),
+        complete: () => console.info('complete'),
+      });
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Rectifique los datos',
+        detail: '(Campos Vacios)-Intente de Nuevo',
+      });
+    }
   }
 }
