@@ -92,6 +92,12 @@ export class RequestionComponent implements OnInit {
     });
   }
 
+  calcularCalificacionRespuesta(answer: AnswerI) {
+    let calificacion =
+      answer.numberOfVotes < 1 ? 0 : answer.position / answer.numberOfVotes;
+    return calificacion.toFixed(1);
+  }
+
   agregarCalificacion(answer: AnswerI, calificacion: number): void {
     console.log('answer' + answer.answer);
     //answer.answer = 'hello';
