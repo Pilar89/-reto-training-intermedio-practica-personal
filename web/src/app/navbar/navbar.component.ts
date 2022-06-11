@@ -9,7 +9,7 @@ import { ServiceService } from '../Service/service.service';
 })
 export class NavbarComponent implements OnInit {
   userLogged = this.authService.getUserLogged();
-  disabled: boolean = false;
+  logged: boolean = false;
 
   constructor(private authService: ServiceService, private route: Router) {}
 
@@ -18,12 +18,13 @@ export class NavbarComponent implements OnInit {
   }
 
   traerdatos() {
-    this.userLogged.subscribe((value) => {    
-      if (value?.email == undefined) {
-        this.disabled = true;        
+    this.userLogged.subscribe((user) => {
+      if (user?.email != null) {
+        this.logged = true;
       } else {
-        this.disabled = false;       
+        this.logged = false;
       }
+      console.log({ logged: this.logged });
     });
   }
 
@@ -31,5 +32,8 @@ export class NavbarComponent implements OnInit {
     this.route.navigate(['login']);
   }
 
-  
+  async logout() {
+    await this.authService.logout();
+    window.location.pathname = '/login';
+  }
 }
