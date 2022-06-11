@@ -49,7 +49,12 @@ export class PreguntasComponent implements OnInit {
   }
 
   nextPage(): void {
-    this.page += 1;
+    let newPage = this.page + 1;
+    let totalPages = this.Math.ceil(
+      (this.questions?.length || 0) / this.pageSize
+    );
+    if (newPage + 1 > totalPages) return;
+    this.page = newPage;
   }
 
   getPage(page: number): void {
