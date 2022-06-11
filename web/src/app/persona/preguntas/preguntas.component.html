@@ -94,12 +94,7 @@
     </li>
     <li
       class="page-item"
-      *ngFor="
-        let page of [].constructor(
-          Math.ceil((this.questions?.length || 0) / pageSize)
-        );
-        let i = index
-      "
+      *ngFor="let page of [].constructor(getTotalPages()); let i = index"
     >
       <a class="page-link" (click)="getPage(i)">{{ i + 1 }}</a>
     </li>
