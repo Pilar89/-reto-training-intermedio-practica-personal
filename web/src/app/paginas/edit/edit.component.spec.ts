@@ -1,24 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { EditComponent } from './edit.component';
 
-xdescribe('EditComponent', () => {
-  let component: EditComponent;
-  let fixture: ComponentFixture<EditComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [EditComponent],
-    }).compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(EditComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+describe('EditComponent', () => {
   it('should create', () => {
+    const mockitomodalService = jasmine.createSpy() as any;
+    const mockitoauthService = jasmine.createSpy() as any;
+    const mockitoservices = jasmine.createSpy() as any;
+    const mockitomessageService = jasmine.createSpy() as any;
+
+    const component = new EditComponent(
+      mockitomodalService,
+      mockitoauthService,
+      mockitoservices,
+      mockitomessageService
+    );
+
     expect(component).toBeTruthy();
   });
 });

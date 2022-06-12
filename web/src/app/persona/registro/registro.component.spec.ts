@@ -1,24 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RegistroComponent } from './registro.component';
 
-xdescribe('RegistroComponent', () => {
-  let component: RegistroComponent;
-  let fixture: ComponentFixture<RegistroComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [RegistroComponent],
-    }).compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(RegistroComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+describe('RegistroComponent', () => {
   it('should create', () => {
+    const mockFormBuilder = { group: () => null } as any;
+    const mockMessageService = jasmine.createSpy() as any;
+    const mockAuthService = jasmine.createSpy() as any;
+    const mockRoute = jasmine.createSpy() as any;
+
+    const component = new RegistroComponent(
+      mockFormBuilder,
+      mockMessageService,
+      mockAuthService,
+      mockRoute
+    );
     expect(component).toBeTruthy();
   });
 });

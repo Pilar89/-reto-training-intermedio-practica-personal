@@ -2,23 +2,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RetrievePasswordComponent } from './retrieve-password.component';
 
-xdescribe('RetrievePasswordComponent', () => {
-  let component: RetrievePasswordComponent;
-  let fixture: ComponentFixture<RetrievePasswordComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [RetrievePasswordComponent],
-    }).compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(RetrievePasswordComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+describe('RetrievePasswordComponent', () => {
   it('should create', () => {
+    const mockFormBuilder = { group: () => null } as any;
+    const mockAuthService = jasmine.createSpy() as any;
+    const mockRouter = jasmine.createSpy() as any;
+
+    const component = new RetrievePasswordComponent(
+      mockFormBuilder,
+      mockAuthService,
+      mockRouter
+    );
     expect(component).toBeTruthy();
   });
 });
