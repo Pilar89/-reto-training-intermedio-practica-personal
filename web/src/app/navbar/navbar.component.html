@@ -8,10 +8,16 @@
         height="75"
       />
     </a>
+    <h6
+      class="text-text-left col-md-2 offset-md-6 font-italic text-primary"
+      *ngIf="logged"
+    >
+      <strong>{{ userEmail }}</strong>
+    </h6>
 
     <button
       type="button"
-      class="p-button-warning"
+      class="btn btn-primary"
       (click)="login()"
       *ngIf="!logged"
     >
@@ -20,7 +26,7 @@
 
     <button
       type="button"
-      class="p-button-warning"
+      class="btn btn-primary"
       (click)="logout()"
       *ngIf="logged"
     >

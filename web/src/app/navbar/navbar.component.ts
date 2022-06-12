@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServiceService } from '../Service/service.service';
@@ -13,6 +14,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(private authService: ServiceService, private route: Router) {}
 
+  userEmail!: string;
+
   ngOnInit(): void {
     this.traerdatos();
   }
@@ -20,6 +23,7 @@ export class NavbarComponent implements OnInit {
   traerdatos() {
     this.userLogged.subscribe((user) => {
       if (user?.email != null) {
+        this.userEmail = user.email;
         this.logged = true;
       } else {
         this.logged = false;
