@@ -3,6 +3,7 @@ import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.QuestionDTO;
 import co.com.sofka.questions.reposioties.AnswerRepository;
 import co.com.sofka.questions.service.question.QuestioService;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
@@ -22,6 +23,8 @@ public class AddAnswerUseCase implements SaveAnswer {
         this.mapperUtils = mapperUtils;
         this.serviceQuestion = serviceQuestion;
     }
+
+
 
     public Mono<QuestionDTO> apply(AnswerDTO answerDTO) {
         Objects.requireNonNull(answerDTO.getQuestionId(), "Id of the answer is required");
