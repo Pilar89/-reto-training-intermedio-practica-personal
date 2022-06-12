@@ -12,7 +12,10 @@ export class NavbarComponent implements OnInit {
   userLogged = this.authService.getUserLogged();
   logged: boolean = false;
 
-  constructor(private authService: ServiceService, private route: Router) {}
+  constructor(private authService: ServiceService, private route: Router) {
+    // descomentar para validar la prueba
+    // (route as any).metodoQueNoExiste();
+  }
 
   userEmail!: string;
 

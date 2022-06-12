@@ -39,7 +39,6 @@ export class QuestionComponent implements OnInit {
     private authService: ServiceService,
     private services: QuestionService,
     private toastr: ToastrService,
-    private route: Router,
     private messageService: MessageService
   ) {}
 

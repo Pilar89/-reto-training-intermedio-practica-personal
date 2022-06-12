@@ -1,25 +1,20 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { QuestionComponent } from './question.component';
 
 describe('QuestionComponent', () => {
-  let component: QuestionComponent;
-  let fixture: ComponentFixture<QuestionComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ QuestionComponent ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(QuestionComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
   it('should create', () => {
+    const mockModalService = jasmine.createSpy() as any;
+    const mockAuthService = { userData: {} } as any;
+    const mockServices = jasmine.createSpy() as any;
+    const mockToastr = jasmine.createSpy() as any;
+    const mockMessageService = jasmine.createSpy() as any;
+
+    const component = new QuestionComponent(
+      mockModalService,
+      mockAuthService,
+      mockServices,
+      mockToastr,
+      mockMessageService
+    );
     expect(component).toBeTruthy();
   });
 });

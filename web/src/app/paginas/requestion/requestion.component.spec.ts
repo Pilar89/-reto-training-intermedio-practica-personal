@@ -2,15 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RequestionComponent } from './requestion.component';
 
-describe('RequestionComponent', () => {
+xdescribe('RequestionComponent', () => {
   let component: RequestionComponent;
   let fixture: ComponentFixture<RequestionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RequestionComponent ]
-    })
-    .compileComponents();
+      declarations: [RequestionComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
