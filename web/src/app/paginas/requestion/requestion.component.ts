@@ -34,7 +34,6 @@ export class RequestionComponent implements OnInit {
     private questionService: QuestionService,
     private service: QuestionService,
     private modalService: NgbModal,
-    private messageService: MessageService,
     private modalServiceEdit: NgbModal,
     @Inject(DOCUMENT) private document: Document
   ) {}

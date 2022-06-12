@@ -1,25 +1,18 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LoginComponent } from './login.component';
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('QuestionComponent', () => {
+  it('LoginComponent', () => {
+    const mockformBuilder = { group: () => null } as any;
+    const mockmessageService = jasmine.createSpy() as any;
+    const mockauthService = jasmine.createSpy() as any;
+    const mockroute = jasmine.createSpy() as any;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
+    const component = new LoginComponent(
+      mockformBuilder,
+      mockmessageService,
+      mockauthService,
+      mockroute
+    );
     expect(component).toBeTruthy();
   });
 });

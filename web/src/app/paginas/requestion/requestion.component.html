@@ -77,7 +77,7 @@
             <div class="row">
               <app-edit-aswer
                 [answer]="answer"
-                *ngIf="answer.userId == userId"
+                *ngIf="answer.userId === userId"
                 class="col-md-2 offset-md-8"
               ></app-edit-aswer>
               <span class="p-float-label" style="margin: 4px"></span>

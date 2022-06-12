@@ -25,8 +25,6 @@ export class AnswerComponent implements OnInit {
     private modalService: NgbModal,
     private modalServiceEdit: NgbModal,
     private services: QuestionService,
-    private toastr: ToastrService,
-    private route: Router,
     private formBuilder: FormBuilder,
     private messageService: MessageService,
     public authService: ServiceService
