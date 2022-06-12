@@ -1,5 +1,7 @@
 package co.com.sofka.questions.service.question;
 
+import co.com.sofka.questions.model.AnswerDTO;
+import co.com.sofka.questions.model.QuestionDTO;
 import co.com.sofka.questions.service.IServiceQuestion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -29,4 +31,10 @@ public class QuestioService implements IServiceQuestion {
         javaMailSender.send(simpleMailMessage);
         return Mono.just("Mensaje enviado");
     }
+
+    public String informacion(QuestionDTO question, AnswerDTO answer) {
+        return "Algun usuario acaba de responder la siguiente pregunta: "
+                + question.getQuestion() + "\n Respuesta del usuario: " + answer.getAnswer() + "\n Enlace de la pregunta: http://localhost:4200/question/" +question.getId();
+    }
+
 }

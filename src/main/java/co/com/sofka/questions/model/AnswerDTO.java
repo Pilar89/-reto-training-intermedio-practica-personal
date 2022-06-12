@@ -1,10 +1,6 @@
 package co.com.sofka.questions.model;
 
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 import java.util.Optional;
@@ -38,7 +34,12 @@ public class AnswerDTO {
         this.numberOfVotes = numberOfVote;
         this.position = position;
     }
-
+    public AnswerDTO(String id, @NotBlank String questionId, @NotBlank String userId, @NotBlank String answer) {
+        this.id = id;
+        this.userId = userId;
+        this.questionId = questionId;
+        this.answer = answer;
+    }
     public String getId() {
       return id;
     }

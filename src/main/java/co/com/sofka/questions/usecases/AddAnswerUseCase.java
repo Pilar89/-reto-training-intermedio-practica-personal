@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
 
+import javax.mail.MessagingException;
 import java.util.Objects;
 
 @Service
@@ -17,6 +18,7 @@ public class AddAnswerUseCase implements SaveAnswer {
     private final MapperUtils mapperUtils;
     private final GetUseCase getUseCase;
     private final QuestioService serviceQuestion;
+
     public AddAnswerUseCase(MapperUtils mapperUtils, GetUseCase getUseCase, AnswerRepository answerRepository, QuestioService serviceQuestion) {
         this.answerRepository = answerRepository;
         this.getUseCase = getUseCase;
@@ -25,17 +27,18 @@ public class AddAnswerUseCase implements SaveAnswer {
     }
 
 
-
     public Mono<QuestionDTO> apply(AnswerDTO answerDTO) {
         Objects.requireNonNull(answerDTO.getQuestionId(), "Id of the answer is required");
         return getUseCase.apply(answerDTO.getQuestionId()).flatMap(question ->
                 answerRepository.save(mapperUtils.mapperToAnswer().apply(answerDTO))
                         .map(answer -> {
                             question.getAnswers().add(answerDTO);
-                            serviceQuestion.enviarCorreo(question.getEmail(),"Han respondido tu pregunta","Algun usuario acaba de responder la siguiente pregunta: " + question.getQuestion());
+                            serviceQuestion.enviarCorreo(question.getEmail(),"Han respondido tu pregunta", serviceQuestion.informacion(question,answerDTO));
                             return question;
                         })
         );
     }
+
+
 
 }
