@@ -53,14 +53,12 @@ export class QuestionComponent implements OnInit {
       const parse = JSON.parse(this.localitems).email; // ok
       this.userEmail = parse;
     }
-    console.log('correo usuario: ' + this.userEmail);
   }
 
   saveQuestion(question: QuestionI): void {
     if (question.type && question.category) {
       this.modalService.dismissAll();
       question.email = this.userEmail;
-      alert(question.email);
       this.services.saveQuestion(question).subscribe({
         next: (v) => {
           if (v) {

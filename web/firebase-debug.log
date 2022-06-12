@@ -1,0 +1,25 @@
+[debug] [2022-06-12T21:43:51.150Z] ----------------------------------------------------------------------
+[debug] [2022-06-12T21:43:51.154Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\maria coneo\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-06-12T21:43:51.156Z] CLI Version:   11.0.1
+[debug] [2022-06-12T21:43:51.156Z] Platform:      win32
+[debug] [2022-06-12T21:43:51.156Z] Node Version:  v16.15.0
+[debug] [2022-06-12T21:43:51.157Z] Time:          Sun Jun 12 2022 16:43:51 GMT-0500 (hora estándar de Colombia)
+[debug] [2022-06-12T21:43:51.158Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-06-12T21:43:51.292Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-06-12T21:43:51.293Z] > authorizing via signed-in user (richardvellojin@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\maria coneo\Desktop\Sofka-u\5.AplicacionesEmpresariales\SoskaUReto\-reto-training-intermedio-practica-personal\web
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
