@@ -37,12 +37,7 @@
 ![img_1.png](img_1.png)
 
 ### Uso de algún frameworks o preprocesador CSS
-<img width="960" alt="imagenTestUnitarioAdd" src="https://user-images.githubusercontent.com/103125129/173373849-296b97a7-f17f-4160-befc-7943f1c9c833.png">
-
-
-
-
-
+<img width="960" alt="Estilos" src="https://user-images.githubusercontent.com/103125129/173374591-187ff30d-a5dc-41b1-808d-edee6d4cecb1.png">
 
 
 
