@@ -22,6 +22,22 @@
 
 ![](respuestas.gif)
 
+### Paginador:
+
+#### Se hace paginador de  10 preguntas por cada  página.
+
+![](paginador.gif)
+
+### Crear y editar peguntas
+
+![](pregunta.gif)
+
+####  Cuando alguien responde una de las preguntas, el usuario que la formuló recibe la siguiente notificación al correo:
+![img_1.png](img_1.png)
+
+
+
+
 
 
 
