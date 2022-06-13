@@ -1,6 +1,6 @@
 # -reto-training-intermedio-practica-personal
-link del reto: https://preguntasyrespuestas-705a8.firebaseapp.com/login
-backend : https://reto-training-sofka.herokuapp.com/
+#### link del reto: https://preguntasyrespuestas-705a8.firebaseapp.com/login
+#### backend : https://reto-training-sofka.herokuapp.com/
 ### Requerimientos hechos:
 
 ### Se realizó autenticación con el uso del aplicativo firebase:
