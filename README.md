@@ -38,5 +38,6 @@
 
 ### Uso de algún frameworks o preprocesador CSS
 
+<img width="960" alt="Estilos" src="https://user-images.githubusercontent.com/103125129/173397717-c56c517c-3630-4af9-9d47-0fe19d569449.png">
 
 
