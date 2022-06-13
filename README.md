@@ -36,7 +36,7 @@
 ####  Cuando alguien responde una de las preguntas, el usuario que la formuló recibe la siguiente notificación al correo:
 ![img_1.png](img_1.png)
 
-
+### Uso de algún frameworks o preprocesador CSS
 
 
 
